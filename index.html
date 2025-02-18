@@ -18,10 +18,15 @@
 </head>
 <body
 	x-data="{
+		modalOpen: false,
 		cart: JSON.parse(localStorage.getItem('cart') ?? '[]'),
 		
 		get cartCount() {
 			return this.cart.length;
+		},
+		
+		get groupedCart() {
+			return Object.groupBy(this.cart, ({ title }) => title);
 		},
 		
 		get totalSum() {
@@ -42,10 +47,55 @@
 			if (findIndex != -1) {
 				this.cart.splice(findIndex, 1);
 			}
-		}
+		},
 	}"
 	x-effect="updateLocalStorage"
+	x-init="console.log(groupedCart)"
 >
+	
+	<div>
+	<div
+		class="bg-black/50 w-full h-full fixed"
+		x-show="modalOpen"
+		x-transition
+	>
+		<div
+			x-on:click.outside="modalOpen = false"
+			class="bg-white p-3 left-[50%] top-[50%] absolute rounded shadow-sm min-w-[320px] max-w-[720px] -translate-x-[50%] -translate-y-[50%]"
+		>
+			<div
+				class="absolute right-[10px] top-[10px] cursor-pointer hover:opacity-80 active:opacity-50"
+				x-on:click="modalOpen = false"
+			>
+				&cross;
+			</div>
+		
+			<div class="pb-[10px] mb-[10px] border-b border-b-slate-800">
+				<h3 class="font-bold text-[24px] text-center">Корзина Зорина</h3>
+			</div>
+			
+			<div class="grid grid-cols-3 gap-[40px]">
+				<template x-for="item in cart">
+					<div class="flex flex-col items-center">
+						<img src="https://placehold.co/600x400" class="w-[70px] h-[70px] object-cover rounded-full" />
+						<div class="text-center">
+							<h3 x-text="item.title"></h3>
+							<span class="text-slate-600 text-[14px]" x-text="item.price + ' руб.'"></span>
+						</div>
+					</div>
+				</template>
+			</div>
+		
+			<div class="pt-[10px] mt-[10px]  border-t border-t-slate-800 flex justify-center">
+				<button class="zor rounded-md bg-teal-600 px-4 py-3 text-sm font-semibold text-white shadow-xs hover:bg-teal-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 border-none">
+					Купить
+				</button>
+			</div>
+		</div>
+	</div>
+	</div>
+
+	<div :inert="modalOpen">
   <header>
     <h1 class="font-bold text-[40px]">Мочалка Зорина</h1>
   </header>
@@ -54,7 +104,10 @@
     <h3 class="title">Магазин Ивана Зорина Витальевича &copy; 2025</h3>
   </nav>
   
-  <div class="mt-[30px] flex items-center flex-col justify-center gap-y-[10px]">
+  <div
+	class="mt-[30px] flex items-center flex-col justify-center gap-y-[10px] cursor-pointer hover:opacity-80 active:opacity-50"
+	x-on:click="modalOpen = !modalOpen"
+  >
 	  <div class="max-w-[1024px] bg-[#009688] text-white font-bold text-center flex gap-[10px] px-3 py-2 rounded-md shadow-lg">
 		В корзине:
 		<p x-text="cartCount"></p>
@@ -124,7 +177,7 @@
 					x-bind:disabled="cartCount <= 0"
 					x-on:click="deleteFromCart(3)"
 					class="bg-red-800 text-white font-bold border-none disabled:opacity-50 disabled:pointer-events-none"
-			>
+			> 
 				&cross;
 			  </button>
 			</template>
@@ -150,6 +203,7 @@
   <footer>
     <p>© 2025 Мочалка Зорина. Все права защищены.</p>
   </footer>
+  </div>
   
   <script src="./script.js"></script>
 </body>

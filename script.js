@@ -1,3 +1,6 @@
+// Инициализация Fancybox для всех элементов с data-fancybox
 Fancybox.bind("[data-fancybox]", {
-  // Your custom options
+  // Можно добавить свои опции при необходимости
+  Toolbar: false,
+  animated: false
 });
