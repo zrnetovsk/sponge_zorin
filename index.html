@@ -145,7 +145,7 @@
                             alt="Мочалка 3">
                         <h3>Мочалка Классика</h3>
                         <p class="price">Цена: 100 руб.</p>
-                        <button x-on:click="cart.push({ id: 1, price: 100, title: 'Мочалка Классика', preview: 'https://plus.unsplash.com/premium_photo-1684407616442-02e809d37267?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"' })"
+                        <button x-on:click="cart.push({ id: 1, price: 100, title: 'Мочалка Классика', preview: 'https://plus.unsplash.com/premium_photo-1684407616442-02e809d37267?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' })"
                             class="cart-btn">Купить</button>
                         <template x-if="cart.find((c) => c.id == 1)">
                             <button x-bind:disabled="cartCount <= 0" x-on:click="deleteFromCart(1)"
