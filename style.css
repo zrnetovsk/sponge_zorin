@@ -1,3 +1,13 @@
+html,
+body {
+  scrollbar-gutter: stable;
+}
+
+:root {
+  --primary: #009688;
+  --secondary: #00796b;
+}
+
 body {
       margin: 0;
       padding: 0;
@@ -30,13 +40,13 @@ body {
 		}
 	}
     header {
-      background: #009688;
+      background: var(--primary);
       color: #fff;
       padding: 20px;
       text-align: center;
     }
     nav {
-      background: #00796b;
+      background: var(--secondary);
       padding: 10px;
       text-align: center;
     }
@@ -89,7 +99,7 @@ body {
       margin-bottom: 10px;
     }
     footer {
-      background: #009688;
+      background: var(--primary);
       color: #fff;
       text-align: center;
       padding: 15px 0;
