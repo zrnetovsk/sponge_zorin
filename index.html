@@ -25,6 +25,7 @@
       href="https://fonts.googleapis.com/css2?family=Bona+Nova+SC:ital,wght@0,400;0,700;1,400&display=swap"
       rel="stylesheet"
     />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   </head>
 
   <body
@@ -54,6 +55,13 @@
             if (findIndex != -1) {
                 this.cart.splice(findIndex, 1);
             }
+        },
+
+        getTotalFor(article) {
+            const countOfIt = this.countFor(article.id);
+            const price = countOfIt * article.price;
+
+            return price;
         },
 
         onStateChange() {
@@ -102,7 +110,7 @@
                     ></h3>
                     <span
                       class="text-slate-600 text-[14px]"
-                      x-text="article.price + ' руб.'"
+                      x-text="getTotalFor(article) + ' руб.'"
                     ></span>
                   </div>
                 </div>
@@ -128,15 +136,24 @@
     </div>
 
     <div :inert="modalOpen" class="grow flex flex-col">
-      <header>
-        <h1 class="font-bold text-[40px]">Мочалка Зорина</h1>
+      <header class="flex flex-col">
+        <div class="flex gap-x-3 justify-center">
+            <a class="underline pointer-events-none opacity-50" href="./index.html">Каталог</a>
+            <a class="hover:opacity-70 active:opacity-60" href="./about.html">О компании</a>
+        </div>
+
+        <div>
+            <h1 data-aos="fade-down" class="font-bold text-[40px]">Мочалка Зорина</h1>
+        </div>
       </header>
 
       <nav>
         <h3 class="title">Магазин Ивана Зорина Витальевича &copy; 2025</h3>
       </nav>
 
-      <div class="mt-[30px] flex justify-center">
+      <div
+        class="mt-[30px] flex justify-center"
+      >
         <button
           class="zor flex items-center flex-col justify-center gap-y-[10px] cursor-pointer hover:opacity-80 active:opacity-50 disabled:pointer-events-none"
           x-on:click="modalOpen = !modalOpen"
@@ -172,7 +189,7 @@
           <h2 class="text-center mb-[20px] text-[30px]">Наши товары</h2>
 
           <div class="products">
-            <div class="product">
+            <div data-aos="flip-left" class="product">
               <img
                 class="hover:opacity-80 transition-all cursor-zoom-in"
                 data-fancybox="top"
@@ -203,7 +220,7 @@
                 </template>
               </div>
             </div>
-            <div class="product">
+            <div data-aos="flip-up" class="product">
               <img
                 class="hover:opacity-80 transition-all cursor-zoom-in"
                 data-fancybox="top"
@@ -234,7 +251,7 @@
                 </template>
               </div>
             </div>
-            <div class="product">
+            <div data-aos="flip-right" class="product">
               <img
                 class="hover:opacity-80 transition-all cursor-zoom-in"
                 data-fancybox="top"
@@ -305,6 +322,7 @@
       </footer>
     </div>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="./script.js"></script>
   </body>
 </html>

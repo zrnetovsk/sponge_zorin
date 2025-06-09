@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Мочалка Зорина</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/@alpinejs/persist@3.x.x/dist/cdn.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bona+Nova+SC:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  </head>
+
+  <body class="flex flex-col min-h-screen">
+     <header class="flex flex-col">
+        <div class="flex gap-x-3 justify-center">
+          <a class="hover:opacity-70 active:opacity-60" href="./index.html">Каталог</a>
+            <a class="underline pointer-events-none opacity-50" href="./about.html">О компании</a>
+        </div>
+
+        <div>
+            <h1 data-aos="fade-down" class="font-bold text-[40px]">Мочалка Зорина</h1>
+        </div>
+      </header>
+
+      <nav>
+        <h3 class="title">Магазин Ивана Зорина Витальевича &copy; 2025</h3>
+      </nav>
+
+    <main class="grow-1">
+      <div class="flex flex-col max-w-[720px] mx-auto py-[50px]">
+        <div class="flex justify-between gap-x-3 items-center">
+          <div class="w-[300px]">
+            <video
+              src="./about.mp4"
+              alt=""
+              class="w-[300px] h-[300px] shadow-md rounded-sm object-cover"
+              muted
+              loop
+              autoplay
+              style="width: 300px; height: 300px; object-fit: cover;"
+            >
+          </div>
+
+          <div class="max-w-[350px]">
+            <h3 class="mb-[20px] text-3xl font-bold">
+              О компании
+            </h3>
+            <p>
+              Мы — производитель качественных мочалок из натуральных материалов. Наша продукция сочетает экологичность, долговечность и доступные цены. С 52 года мы радуем клиентов надёжными и удобными мочалками для бань, саун и повседневного использования.
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+        <p>© 2025 Мочалка Зорина. Все права защищены.</p>
+
+        <div
+          x-data="{
+                    primary: $persist(getComputedStyle(document.documentElement).getPropertyValue('--primary')),
+                    secondary: $persist(getComputedStyle(document.documentElement).getPropertyValue('--secondary')),
+
+                    handleChange() {
+                        document.documentElement.style.setProperty('--primary', this.primary);
+                        document.documentElement.style.setProperty('--secondary', this.secondary);
+                    },
+                }"
+          x-effect="handleChange"
+        >
+          Primary:
+          <input type="color" x-model="primary" />
+
+          Secondary:
+          <input type="color" x-model="secondary" />
+        </div>
+      </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="./script.js"></script>
+  </body>
+</html>
